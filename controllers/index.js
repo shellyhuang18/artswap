@@ -6,9 +6,6 @@ const path = require('path');
 const router = express.Router();
 const basename = path.basename(module.filename);
 
-// router.use('/', require('./alt'));
-// router.use('/', require('./home'));
-
 fs
   .readdirSync(__dirname)
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
@@ -17,12 +14,10 @@ fs
     router.use(`/${fileName}`, require(`./${fileName}`).registerRouter());
   });
 
-router.get('/', (req, res) => {
-	res.render('home');
-});
 
 router.get('/', (req, res) => {
   res.render('home');
 });
+
 
 module.exports = router;
