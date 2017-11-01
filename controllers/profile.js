@@ -5,13 +5,10 @@ module.exports = {
   registerRouter() {
     const router = express.Router();
 
-    router.post('/', this.new);
 
-    return router;
-  },
+// Allows user to update portfolio - upload images to add more to his repitoire
+router.post('/', (req, res) => {
+	res.render('profile');
+})
 
-   // Allows user to update portfolio - upload images to add more to his repitoire
-  new(req, res){
-
-  }
 };
