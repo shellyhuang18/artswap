@@ -1,11 +1,15 @@
 const express = require('express');
-const models = require('../models');
 
-const router = express.Router();
+module.exports = {
+  registerRouter() {
+    const router = express.Router();
 
-// Logs user out of his account
-router.put('/', (req, res) => {
+    router.post('/', this.logout);
 
-})
-
-module.exports = router;
+    return router;
+  },
+  logout(req, res) {
+    req.logout();
+    res.redirect('/');
+  },
+};

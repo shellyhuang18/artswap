@@ -1,7 +1,7 @@
 {
-  "name": "backend-starter-code",
+  "name": "artswap",
   "version": "1.0.0",
-  "description": "Starter code for an Express/Sequelize backend.",
+  "description": "Artist job searching.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon -L app.js",
@@ -19,6 +19,6 @@
     "nodemon": "^1.12.1",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.13.3"
+    "sequelize": "^4.20.1"
   }
 }
