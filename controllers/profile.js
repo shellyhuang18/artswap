@@ -1,5 +1,5 @@
 const express = require('express');
-const models = require('../models');
+const Redirect = require('../middlewares/redirect');
 
 module.exports = {
   registerRouter() {
@@ -9,6 +9,11 @@ module.exports = {
 		res.render('profile');
 	})
 
+    router.get('/', Redirect.ifNotLoggedIn(), this.index);
+
     return router;
-  }
+  },
+  index(req, res) {
+    res.render('profile', { user: req.user, success: req.flash('success') });
+  },
 };
