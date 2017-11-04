@@ -1,11 +1,17 @@
 const express = require('express');
 const models = require('../models');
 
-const router = express.Router();
+module.exports = {
+  registerRouter() {
+    const router = express.Router();
 
-// Allows user to log in 
-router.get('/', (req, res) => {
+    router.post('/', this.login);
 
-})
+    return router;
+  },
 
-module.exports = router;
+   // Allows user to log in 
+  login(req, res){
+
+  }
+};

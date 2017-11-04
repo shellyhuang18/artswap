@@ -1,11 +1,17 @@
 const express = require('express');
 const models = require('../models');
 
-const router = express.Router();
+module.exports = {
+  registerRouter() {
+    const router = express.Router();
 
-// Allowers user to create an account
-router.post('/', (req, res) => {
+    router.post('/', this.submit);
 
-})
+    return router;
+  },
 
-module.exports = router;
+  // Allows user create an account
+  submit(req, res){
+
+  }
+};
