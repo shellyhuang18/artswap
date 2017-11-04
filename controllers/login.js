@@ -35,5 +35,5 @@ module.exports = {
     }).catch(() => {
       res.redirect('/users');
     });
-  },
+  }
 };
