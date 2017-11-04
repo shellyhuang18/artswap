@@ -1,14 +1,15 @@
 const express = require('express');
-const models = require('../models');
+const Redirect = require('../middlewares/redirect');
 
 module.exports = {
   registerRouter() {
     const router = express.Router();
 
+    router.get('/', Redirect.ifNotLoggedIn(), this.index);
 
-// Allows user to update portfolio - upload images to add more to his repitoire
-router.post('/', (req, res) => {
-	res.render('profile');
-})
-
+    return router;
+  },
+  index(req, res) {
+    res.render('profile', { user: req.user, success: req.flash('success') });
+  },
 };
