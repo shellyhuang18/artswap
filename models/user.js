@@ -45,11 +45,11 @@ module.exports = (sequelize, DataTypes) => {
 
     /*
       So we can list all the posts a user has made
-    
+    */
     User.associate = (models) => {
         models.User.hasMany(models.Post);
     }
-    */
+    
 
   User.beforeCreate((user) =>
     new sequelize.Promise((resolve) => {

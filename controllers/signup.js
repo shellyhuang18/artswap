@@ -11,7 +11,7 @@ module.exports = {
   },
 
   index(req, res) {
-    res.render('signup');
+    res.render('signup', {title: 'Join Artswap', layout:'noNavigation'});
   },
   submit(req, res) {
     models.User.create({
