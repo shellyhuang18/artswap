@@ -4,7 +4,7 @@ const models = require('../models');
 module.exports = {
   registerRouter() {
     const router = express.Router();
-
+    router.get('/', this.index);
     router.post('/', this.submit);
 
     return router;
