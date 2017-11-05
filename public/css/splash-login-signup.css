@@ -1,6 +1,12 @@
-body {
+body{
 	height:auto;
+	min-height:100%;
+	padding:0;
+	margin:0;
+	max-height:100%;
+	background-image: url('/img/backgrounds/doodles.jpg')
 }
+
 
 
 .floating-label-form-group{
