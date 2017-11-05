@@ -14,7 +14,7 @@ module.exports = {
     return router;
   },
   index(req, res) {
-    res.render('login', { error: req.flash('error')});
+    res.render('login', { error: req.flash('error'), layout: 'noNavigation'});
   },
   login(req, res) {
     passport.authenticate('local', {
