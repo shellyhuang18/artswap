@@ -7,7 +7,16 @@ body{
 	background-image: url('/img/backgrounds/doodles.jpg')
 }
 
-
+#form-background{
+	border-color: maroon;
+	border-style: dashed;
+	border-radius: 5px;
+	background-color:#FFF;
+	margin-top:20px;
+}
+#form-area{
+	width:auto;
+}
 
 .floating-label-form-group{
 	font-size:14px;
@@ -57,7 +66,7 @@ body{
 	opacity:1
 }
 .floating-label-form-group-with-focus label{
-	color:#0085A1
+	color:maroon;
 }form 
 
 .row:first-child 
@@ -81,8 +90,8 @@ body{
 .btn-default:focus,
 
 .btn-default:hover{
-	background-color:#0085A1;
-	border:1px solid #0085A1;
+	background-color:maroon;
+	border:1px solid maroon;
 	color:#fff
 }
 
