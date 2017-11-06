@@ -14,7 +14,14 @@
 
 
 {{#each threads}}
-    <a href="/"> 
-        {{this.title}}
-    </a>
+   
+	<div>
+		<!-- assign id to each invidual thread -->
+		<a href='/thread/{{ this.slug }}'> 
+	        {{this.title}}
+	    </a>
+	    	{{this.description}}
+	</div>
+	    
+    <br>
 {{/each}}
