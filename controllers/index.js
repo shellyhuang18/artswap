@@ -16,7 +16,12 @@ fs
 
 
 router.get('/', (req, res) => {
-  res.render('home');
+	if(req.user){
+      res.render('home');
+	}
+    else{
+      res.render('splash', {layout: 'splash'});
+    }
 });
 
 router.get('*', (req, res) => {

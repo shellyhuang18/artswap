@@ -1,0 +1,60 @@
+body{
+	height:auto;
+	min-height:100%;
+	max-height: 100%;
+	background-image: url('/img/splash-bg.jpg');
+}
+
+h4{
+	color: #FFF;
+}
+
+.letterboxing{
+	min-width: 100%;
+	background-color: #000;
+	height: 40px;
+}
+
+
+.main{
+	height:100%;
+}
+
+
+
+.pageCenter{
+
+	height: auto;
+
+}
+
+
+#bottomLetter{
+	position:absolute;
+	bottom:0px;
+	display:block;
+}
+
+button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: solid;
+  border-width:thin;
+  border-color: #6bff66;
+  border-radius: 8px;
+  box-shadow: 0 4px green;
+}
+
+button:hover {background-color: #3e8e41}
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
