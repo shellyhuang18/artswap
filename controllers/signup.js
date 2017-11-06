@@ -12,13 +12,13 @@ module.exports = {
   },
 
   index(req, res) {
-    res.render('signup');
+    res.render('signup', {title: 'Join Artswap', layout:'noNavigation'});
   },
   submit(req, res) {
     models.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      username: req.body.username,
+      userName: req.body.username,
       email: req.body.email,
       password: req.body.password,
     }).then((user) => {

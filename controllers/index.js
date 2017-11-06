@@ -19,4 +19,9 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
+router.get('*', (req, res) => {
+  res.status(404);
+  res.render('404', {layout: '404'});
+});
+
 module.exports = router;
