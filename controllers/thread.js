@@ -21,7 +21,9 @@ module.exports = {
     })
       .then((threads) => {
         res.render('threads', {
-          threads: threads
+          threads: threads,
+          difficulties: models.Thread.rawAttributes.difficulty.values,
+          purposes: models.Thread.rawAttributes.purpose.values
         });
       });
   },
@@ -50,8 +52,8 @@ module.exports = {
       slug: getSlug(req.body.title.toLowerCase()),
       title: req.body.title,
       description: req.body.description,
-      difficulty: "Beginner",
-      purpose: "Collab"
+      difficulty: req.body.difficulty,
+      purpose: req.body.purpose
     }).then((thread) => {
       res.redirect(`/thread/${thread.slug}`);
     }).catch(() => {

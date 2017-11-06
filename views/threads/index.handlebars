@@ -9,6 +9,29 @@
 	<label>Description</label>
 	<input type='text' name='description'>
 
+	<br>
+
+	<label>Difficulty</label>
+	<select name='difficulty'>
+		{{#each difficulties}}
+			<option> {{ this }}</option>
+		{{/each}}
+
+	</select>
+	
+	<br>
+	
+	<label>Purpose</label>
+	<select name='purpose'>
+		{{#each purposes}}
+			<option> {{ this }}</option>
+		{{/each}}
+
+	</select>
+
+
+
+
 	<button type='submit'>Submit</button>
 </form>
 
