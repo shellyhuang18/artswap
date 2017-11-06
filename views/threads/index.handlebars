@@ -1,0 +1,20 @@
+<h1>this is post</h1>
+
+<form name="create-post" action="/thread" method="post">
+	<label>Title</label>
+	<input type='text' name='title'>
+
+	<br>
+	
+	<label>Description</label>
+	<input type='text' name='description'>
+
+	<button type='submit'>Submit</button>
+</form>
+
+
+{{#each threads}}
+    <a href="/"> 
+        {{this.title}}
+    </a>
+{{/each}}

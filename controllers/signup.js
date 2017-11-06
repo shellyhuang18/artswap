@@ -23,7 +23,7 @@ module.exports = {
       password: req.body.password,
     }).then((user) => {
       req.login(user, () =>
-        res.redirect('/profile')
+        res.redirect('/')
       );
     }).catch(() => {
       res.render('signup');
