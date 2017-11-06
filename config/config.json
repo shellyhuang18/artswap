@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "week6",
-    "password": "week6",
-    "database": "Art_development",
+    "username": "ctp_user",
+    "password": "ctp_user",
+    "database": "artswap_dev",
     "host": "127.0.0.1",
     "dialect": "postgresql"
   },
