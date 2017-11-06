@@ -18,11 +18,5 @@ fs
 router.get('/', (req, res) => {
   res.render('home');
 });
- 
-router.post('/', Redirect.ifNotLoggedIn('/login'), (req,res) => {
-	req.user.createPost({
-		
-	})
-});
 
 module.exports = router;
