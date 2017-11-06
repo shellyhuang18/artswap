@@ -4,6 +4,7 @@ const models = require('../models');
 module.exports = {
   registerRouter() {
     const router = express.Router();
+
     router.get('/', this.index);
     router.post('/', this.submit);
 
@@ -22,7 +23,7 @@ module.exports = {
       password: req.body.password,
     }).then((user) => {
       req.login(user, () =>
-        res.redirect('/profile')
+        res.redirect('/')
       );
     }).catch(() => {
       res.render('signup');
