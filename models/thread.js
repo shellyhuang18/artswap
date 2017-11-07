@@ -1,20 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
     var Thread = sequelize.define('Thread', {
+        slug:{
+            allowNull: false,
+            type: DataTypes.STRING
+        },
         title: {
-            allownNull: false,
+            allowNull: false,
             type: DataTypes.STRING
         },
         description: {
-            allownNull: false,
+            allowNull: false,
             type: DataTypes.TEXT
         },
         difficulty: {
-            allownNull: false,
+            allowNull: false,
             type: DataTypes.ENUM,
             values: ['Beginner', 'Intermediate', 'Professional']
         },
         purpose: {
-            allownNull: false,
+            allowNull: false,
             type: DataTypes.ENUM,
             values: ['Collab', 'Hiring']
         }
