@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     Thread.associate = (models) => {
         //associate thread to user currently logged in 
         models.Thread.belongsTo(models.User);
+        models.Thread.hasMany(models.Post);
     }
     return Thread;
 };
