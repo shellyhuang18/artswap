@@ -5,18 +5,38 @@
 
 <body>
 
-	<h1>Title: </h1>{{ thread.title}}
+	<h1>Title: </h1>
+	{{ thread.title}}
 
 	<br>
 
-	<h1>Description: </h1>{{ thread.description }}
+	<h1>Description: </h1>
+	{{ thread.description }}
 
 	<br>
 
-	<h1>Difficulty: </h1>{{ thread.difficulty }}
+	<h1>Difficulty: </h1>
+	{{ thread.difficulty }}
 
 	<br>
 
-	<h1>Purpose: </h1>{{ thread.purpose }}
+	<h1>Purpose: </h1>
+	{{ thread.purpose }}
+
+	<br>
+
+	<form method="post">
+		<input type="text" name="info">
+			
+		<button type="submit">Submit</button>
+	</form>
+
+	{{#each post}}
+		{{ body }}
+
+	{{/each}}
+
+
+
 
 </body>
