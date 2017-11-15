@@ -31,9 +31,10 @@
 		<button type="submit">Submit</button>
 	</form>
 
-	{{#each post}}
-		{{ body }}
-
+	{{#each posts}}
+		
+		<div> {{ this.body }} </div>
+		
 	{{/each}}
 
 
