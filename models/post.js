@@ -1,20 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('post', {
-    slug: {
-      type: DataTypes.STRING,
-      unique: 'compositeIndex',
+    user: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
-    title: {
-      type: DataTypes.STRING,
-      unique: 'compositeIndex',
+    thread: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     body: {
       type: DataTypes.STRING,
@@ -23,10 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+    image: {
+      type: DataTypes.STRING,
+    }
   });
 
   Post.associate = (models) => {
     models.Post.belongsTo(models.User);
+    models.Post.belongsTo(models.Thread);
   }
 
   return Post;
