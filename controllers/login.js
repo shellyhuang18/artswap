@@ -7,7 +7,7 @@ module.exports = {
     const router = express.Router();
 
     router.get('/', this.index);
-    router.get('/:username', this.show);
+    router.get('/:username', this.login);
 
     return router;
   },

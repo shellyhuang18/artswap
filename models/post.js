@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('post', {
-    user: {
+    userID: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    thread: {
+    threadID: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

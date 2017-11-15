@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     var Thread = sequelize.define('Thread', {
+        userID:{
+            type: DataTypes.INTEGER,
+            
+        },
         title: {
             allownNull: false,
             type: DataTypes.STRING
