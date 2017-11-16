@@ -9,8 +9,10 @@ module.exports = {
     router.get('/', this.index);
     router.get('/:slug', this.display);
     router.post('/', this.create);
+    router.post('/:slug', this.newResponse);
     router.put('/', this.edit);
     router.delete('/', this.remove);
+
 
     return router;
   },
@@ -22,6 +24,7 @@ module.exports = {
       .then((threads) => {
         res.render('threads', {
           threads: threads,
+          //all enum values
           difficulties: models.Thread.rawAttributes.difficulty.values,
           purposes: models.Thread.rawAttributes.purpose.values
         });
@@ -30,25 +33,10 @@ module.exports = {
 
 
 
-  // Allows user to post a response, iff thread doesn't belong to user
+  // Allows user to create a thread
   create(req, res){
-    // req.user.createPost({
-    //   title: "fffff",
-    //   description: "pppppp",
-    //   difficulty:"Beginner",
-    //   purpose: "Collab"
-    // }).then((post) => {
-    //   res.render('home');
-    // }).catch(() => {
-    //   res.json({
-    //     msg: models.Thread.rawAttributes.difficulty.values[0] 
-    //   })
-      
-    // }) 
-
-
     models.Thread.create({
-      userId: req.user.id,
+      UserId: req.user.id,
       slug: getSlug(req.body.title.toLowerCase()),
       title: req.body.title,
       description: req.body.description,
@@ -57,9 +45,7 @@ module.exports = {
     }).then((thread) => {
       res.redirect(`/thread/${thread.slug}`);
     }).catch(() => {
-      res.json({
-        msg: "You fucked up"
-      })
+      res.render('threads/index')
     });
   },
 
@@ -69,31 +55,38 @@ module.exports = {
     models.Thread.findOne({
       where: {
         slug: req.params.slug
-      },
+      }
     }).then((thread) => {
-      res.render('threads/single', { thread })
+       models.Post.findAll({
+        where: {
+          ThreadId: thread.slug
+        }
+      }).then((posts) => {
+        res.render('threads/single', { thread, posts})
+      })
     }).catch(() => {
       res.redirect('/thread')
     })
 
-    // models.Thread.findOne({
-    //   where: { 
-    //     slug: req.params.slug
-    //   },
-    //   include: [{ 
-    //     model: models.Thread 
-    //   }],
-    // }).then((thread) => {
-    //   res.render('threads/single', { thread })
-    // }).catch(() => {
-    //   res.redirect('/thread')
-    // })
+  },
+
+  //Allows user to post a response to the thread
+  newResponse(req, res){
+    models.Post.create({
+      UserId: req.user.id,
+      ThreadId: req.params.slug,
+      body: req.body.info
+    }).then((post) => {
+      res.redirect(`/thread/${post.ThreadId}`)
+    }).catch(() => {
+      res.redirect('/thread')
+    })
   },
 
 
   // Allows user to edit thread, iff thread belongs to user
   edit(req, res){
-
+    
   },
 
   // Allows user to delete thread, iff thread belongs to user
