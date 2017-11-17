@@ -17,6 +17,7 @@ module.exports = {
     res.render('login', { error: req.flash('error'), layout: 'noNavigation'});
   },
   login(req, res) {
+    req.body.email = req.body.email.toLowerCase();
     passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/login',
