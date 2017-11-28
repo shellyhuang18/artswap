@@ -1,18 +1,19 @@
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top" style="background-color: rgba(0,0,0,0.6);">
     <div class="container-fluid">
       <div class="navbar-header page-scroll">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
           Menu <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="/">Start Bootstrap</a>
+        
+        <a class="navbar-brand" href="/"><img src="/img/logo-large.png" class="img-responsive center-block" style="width: 160px; height: 35px;"> </a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/">Home</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/posts">Posts</a></li>
+          <li><a href="/profile">profile</a></li>
+          <li><a href="/thread">Thread</a></li>
           {{#if cur_user}}
             <li id="logout"><a href="#">Logout</a></li>
           {{ else }}
