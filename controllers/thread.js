@@ -5,7 +5,6 @@ const getSlug = require('speakingurl');
 module.exports = {
   registerRouter() {
     const router = express.Router();
-
     router.get('/', this.index);
     router.get('/:slug', this.display);
     router.post('/', this.create);
