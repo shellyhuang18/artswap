@@ -24,12 +24,17 @@
 	{{ thread.purpose }}
 
 	<br>
-
-	<form method="post">
-		<input type="text" name="info">
-			
-		<button type="submit">Submit</button>
-	</form>
+	{{#if user}}
+		<p> You cannot respond to your own post </p>
+	{{else}}
+		
+		<form method="post">
+			<input type="text" name="info">
+				
+			<button type="submit">Submit</button>
+		</form>
+		
+	{{/if}}
 
 	{{#each posts}}
 		

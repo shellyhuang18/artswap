@@ -35,13 +35,36 @@
 
 {{#each threads}}
    
-	<div>
+	<div id="thread">
 		<!-- assign id to each invidual thread -->
 		<a href='/thread/{{ this.slug }}'> 
 	        {{this.title}}
 	    </a>
 	    	{{this.description}}
+	    <div id="buttons">
+	    	<form action='/thread/edit'>
+	    		<button id="edit_button" method="put">Edit</button>
+	    	</form>
+		    
+		    <button id="delete_button" method="delete">Delete</button>
+		</div>
 	</div>
 	    
     <br>
 {{/each}}
+
+<script>
+	var edit_button = document.getElementById("edit_button");
+	var delete_button = document.getElementById("delete_button");
+
+	function show(){
+		edit_button.style.visibility = "visible";
+		delete_button.style.visibility = "visible";
+	}
+
+	function hide(){
+		edit_button.style.visibility = "hidden";
+		delete_button.style.visibility = "hidden";
+	}
+
+</script>
