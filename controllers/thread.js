@@ -8,6 +8,8 @@ module.exports = {
     router.get('/', this.index);
     router.get('/:slug', this.display);
     router.post('/:slug', this.newResponse);
+    router.post('/', this.create);
+    
     //router.get('/edit/:slug', this.editThread);
     router.get('/edit/:slug', this.edit);
     router.delete('/delete', this.remove);
@@ -28,6 +30,7 @@ module.exports = {
       });
   },
   
+  create(req, res){
     models.Thread.create({
       userId: req.user.id,
       slug: getSlug(req.body.title.toLowerCase()),
