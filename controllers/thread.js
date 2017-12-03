@@ -7,9 +7,10 @@ module.exports = {
     const router = express.Router();
     router.get('/', this.index);
     router.get('/:slug', this.display);
-    router.post('/', this.create);
-    router.put('/', this.edit);
-    router.delete('/', this.remove);
+    router.post('/:slug', this.newResponse);
+    //router.get('/edit/:slug', this.editThread);
+    router.get('/edit/:slug', this.edit);
+    router.delete('/delete', this.remove);
 
     return router;
   },
@@ -26,26 +27,7 @@ module.exports = {
         });
       });
   },
-
-
-
-  // Allows user to post a response, iff thread doesn't belong to user
-  create(req, res){
-    // req.user.createPost({
-    //   title: "fffff",
-    //   description: "pppppp",
-    //   difficulty:"Beginner",
-    //   purpose: "Collab"
-    // }).then((post) => {
-    //   res.render('home');
-    // }).catch(() => {
-    //   res.json({
-    //     msg: models.Thread.rawAttributes.difficulty.values[0] 
-    //   })
-      
-    // }) 
-
-
+  
     models.Thread.create({
       userId: req.user.id,
       slug: getSlug(req.body.title.toLowerCase()),
@@ -75,28 +57,53 @@ module.exports = {
       res.redirect('/thread')
     })
 
-    // models.Thread.findOne({
-    //   where: { 
-    //     slug: req.params.slug
-    //   },
-    //   include: [{ 
-    //     model: models.Thread 
-    //   }],
-    // }).then((thread) => {
-    //   res.render('threads/single', { thread })
-    // }).catch(() => {
-    //   res.redirect('/thread')
-    // })
+
+  },
+
+  //Allows user to post a response to the thread
+  newResponse(req, res){
+      models.Post.create({
+        UserId: req.user.id,
+        ThreadId: req.params.slug,
+        body: req.body.info
+      }).then((user) => {
+        //res.redirect(`/thread/${post.ThreadId}`)
+        //res.render('/threads/single', { user } )
+        res.json({
+          msg: req.user
+        })
+      }).catch(() => {
+        res.redirect('/thread')
+      })
+
   },
 
 
   // Allows user to edit thread, iff thread belongs to user
   edit(req, res){
-
+    res.render('/threads/update')
+    // models.Thread.update({
+    //   title: req.body.title,
+    //   desription: req.body.description
+    // },
+    // {
+    //   where: {
+    //    slug: req.params.slug
+    //   }
+    // }).then(() => {
+    //   res.render('threads/update')
+    // }).catch(() => {
+    //   res.redirect('/thread')
+    // });
   },
+
+  // editThread(req, res){
+
+  //   res.render('/threads/update/')
+  // }
 
   // Allows user to delete thread, iff thread belongs to user
   remove(req, res){
-
   }
+
 };
