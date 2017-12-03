@@ -5,15 +5,12 @@ const getSlug = require('speakingurl');
 module.exports = {
   registerRouter() {
     const router = express.Router();
-
     router.get('/', this.index);
     router.get('/:slug', this.display);
-    router.post('/', this.create);
     router.post('/:slug', this.newResponse);
     //router.get('/edit/:slug', this.editThread);
     router.get('/edit/:slug', this.edit);
     router.delete('/delete', this.remove);
-
 
     return router;
   },
@@ -25,19 +22,14 @@ module.exports = {
       .then((threads) => {
         res.render('threads', {
           threads: threads,
-          //all enum values
           difficulties: models.Thread.rawAttributes.difficulty.values,
           purposes: models.Thread.rawAttributes.purpose.values
         });
       });
   },
-
-
-
-  // Allows user to create a thread
-  create(req, res){
+  
     models.Thread.create({
-      UserId: req.user.id,
+      userId: req.user.id,
       slug: getSlug(req.body.title.toLowerCase()),
       title: req.body.title,
       description: req.body.description,
@@ -46,7 +38,9 @@ module.exports = {
     }).then((thread) => {
       res.redirect(`/thread/${thread.slug}`);
     }).catch(() => {
-      res.render('threads/index')
+      res.json({
+        msg: "You fucked up"
+      })
     });
   },
 
@@ -56,18 +50,13 @@ module.exports = {
     models.Thread.findOne({
       where: {
         slug: req.params.slug
-      }
+      },
     }).then((thread) => {
-       models.Post.findAll({
-        where: {
-          ThreadId: thread.slug
-        }
-      }).then((posts) => {
-        res.render('threads/single', { thread, posts})
-      })
+      res.render('threads/single', { thread })
     }).catch(() => {
       res.redirect('/thread')
     })
+
 
   },
 
@@ -86,6 +75,7 @@ module.exports = {
       }).catch(() => {
         res.redirect('/thread')
       })
+
   },
 
 
@@ -105,7 +95,6 @@ module.exports = {
     // }).catch(() => {
     //   res.redirect('/thread')
     // });
-    
   },
 
   // editThread(req, res){
