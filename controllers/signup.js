@@ -21,7 +21,12 @@ module.exports = {
       userName: req.body.username.toLowerCase(),
       email: req.body.email.toLowerCase(),
       password: req.body.password,
-    }).then((user) => {
+      }),
+      models.Social.create({ //Creates their record in social model
+        userName: req.body.username.toLowerCase(),
+        email: req.body.email.toLowerCase(),
+      }
+      ).then((user) => {
       req.login(user, () =>
         res.redirect('/')
       );
