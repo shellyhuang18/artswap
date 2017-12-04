@@ -69,9 +69,8 @@ module.exports = {
         UserId: req.user.id,
         ThreadId: req.params.slug,
         body: req.body.info
-      }).then((user) => {
+      }).then((post) => {
         res.redirect(`/thread/${post.ThreadId}`)
-        res.render('/threads/single', { user } )
       }).catch(() => {
         res.redirect('/thread')
       })
