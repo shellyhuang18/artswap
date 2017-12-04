@@ -5,14 +5,16 @@ const getSlug = require('speakingurl');
 module.exports = {
   registerRouter() {
     const router = express.Router();
+
     router.get('/', this.index);
     router.get('/:slug', this.display);
-    router.post('/:slug', this.newResponse);
     router.post('/', this.create);
+    router.post('/:slug', this.newResponse);
     
     //router.get('/edit/:slug', this.editThread);
     router.get('/edit/:slug', this.edit);
     router.delete('/delete', this.remove);
+
 
     return router;
   },
@@ -24,15 +26,19 @@ module.exports = {
       .then((threads) => {
         res.render('threads', {
           threads: threads,
+          //all enum values
           difficulties: models.Thread.rawAttributes.difficulty.values,
           purposes: models.Thread.rawAttributes.purpose.values
         });
       });
   },
-  
+
+
+
+  // Allows user to create a thread
   create(req, res){
     models.Thread.create({
-      userId: req.user.id,
+      UserId: req.user.id,
       slug: getSlug(req.body.title.toLowerCase()),
       title: req.body.title,
       description: req.body.description,
@@ -41,9 +47,7 @@ module.exports = {
     }).then((thread) => {
       res.redirect(`/thread/${thread.slug}`);
     }).catch(() => {
-      res.json({
-        msg: "You fucked up"
-      })
+      res.render('threads/index')
     });
   },
 
@@ -53,13 +57,18 @@ module.exports = {
     models.Thread.findOne({
       where: {
         slug: req.params.slug
-      },
-    }).then((posts) => {
-      res.render('threads/single', { thread, posts })
+      }
+    }).then((thread) => {
+       models.Post.findAll({
+        where: {
+          ThreadId: thread.slug
+        }
+      }).then((posts) => {
+        res.render('threads/single', { thread, posts})
+      })
     }).catch(() => {
       res.redirect('/thread')
     })
-
 
   },
 
@@ -72,9 +81,10 @@ module.exports = {
       }).then((post) => {
         res.redirect(`/thread/${post.ThreadId}`)
       }).catch(() => {
-        res.redirect('/thread')
+        res.json({
+          msg: "no"
+        })
       })
-
   },
 
 
@@ -94,6 +104,7 @@ module.exports = {
     // }).catch(() => {
     //   res.redirect('/thread')
     // });
+    
   },
 
   // editThread(req, res){
