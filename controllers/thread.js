@@ -70,11 +70,8 @@ module.exports = {
         ThreadId: req.params.slug,
         body: req.body.info
       }).then((user) => {
-        //res.redirect(`/thread/${post.ThreadId}`)
-        //res.render('/threads/single', { user } )
-        res.json({
-          msg: req.user
-        })
+        res.redirect(`/thread/${post.ThreadId}`)
+        res.render('/threads/single', { user } )
       }).catch(() => {
         res.redirect('/thread')
       })
