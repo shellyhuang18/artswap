@@ -54,8 +54,8 @@ module.exports = {
       where: {
         slug: req.params.slug
       },
-    }).then((thread) => {
-      res.render('threads/single', { thread })
+    }).then((posts) => {
+      res.render('threads/single', { thread, posts })
     }).catch(() => {
       res.redirect('/thread')
     })
