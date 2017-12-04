@@ -17,7 +17,7 @@ fs
 
 router.get('/', (req, res) => {
 	if(req.user){
-      res.render('home');
+      res.render('home', {layout: 'main'});
 	}
     else{
       res.render('splash', {layout: 'splash'});
