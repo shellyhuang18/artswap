@@ -56,12 +56,12 @@ module.exports = {
   display(req, res){
     models.Thread.findOne({
       where: {
-        slug: req.params.slug
+        id: req.params.id
       }
     }).then((thread) => {
        models.Post.findAll({
         where: {
-          ThreadId: thread.slug
+          ThreadId: req.params.id
         }
       }).then((posts) => {
         res.render('threads/single', { thread, posts})
