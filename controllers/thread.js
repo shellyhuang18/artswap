@@ -7,12 +7,12 @@ module.exports = {
     const router = express.Router();
 
     router.get('/', this.index);
-    router.get('/:slug', this.display);
+    router.get('/:id', this.display);
     router.post('/', this.create);
-    router.post('/:slug', this.newResponse);
+    router.post('/:id', this.newResponse);
     
     //router.get('/edit/:slug', this.editThread);
-    router.get('/edit/:slug', this.edit);
+    router.get('/edit/:id', this.edit);
     router.delete('/delete', this.remove);
 
 
@@ -56,12 +56,12 @@ module.exports = {
   display(req, res){
     models.Thread.findOne({
       where: {
-        slug: req.params.slug
+        id: req.params.id
       }
     }).then((thread) => {
        models.Post.findAll({
         where: {
-          ThreadId: thread.slug
+          ThreadId: req.params.id
         }
       }).then((posts) => {
         res.render('threads/single', { thread, posts})
@@ -76,7 +76,7 @@ module.exports = {
   newResponse(req, res){
       models.Post.create({
         UserId: req.user.id,
-        ThreadId: req.params.slug,
+        ThreadId: req.params.id,
         body: req.body.info
       }).then((post) => {
         res.redirect(`/thread/${post.ThreadId}`)

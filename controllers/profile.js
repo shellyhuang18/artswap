@@ -10,6 +10,6 @@ module.exports = {
     return router;
   },
   index(req, res) {
-    res.render('profile', { user: req.user, success: req.flash('success') });
+    res.render('profile', {layout: 'main', user: req.user, success: req.flash('success') });
   },
 };
