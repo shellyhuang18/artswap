@@ -7,7 +7,7 @@ module.exports = {
     const router = express.Router();
 
     router.get('/', Redirect.ifNotLoggedIn(), this.index);
-    //router.post('/', this.submit);
+    router.post('/', this.submit);
 
     return router;
   },
@@ -23,12 +23,20 @@ module.exports = {
   },
 
 
-  /*submit(req, res) {
+  submit(req, res) {
   	models.Social.findOne({
   		where: {
   			userName: req.user.userName
   		}
-  	})
+  	}).then((userSocial) => {
+  		userSocial.updateAttributes({
+  			facebook: req.body.facebook,
+  			twitter: req.body.twitter,
+  			deviantart: req.body.deviantart,
+  			github: req.body.github,
+  			website: req.body.website
+  		})
+  	}).then(res.redirect('/'))
 
-  },*/
+  },
 };
