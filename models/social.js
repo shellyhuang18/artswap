@@ -29,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         github: {
             type: DataTypes.STRING,
         },
-
+        website: { //User's personal website
+            type: DataTypes.STRING,
+        },
     });
     //No associations
     return Social;

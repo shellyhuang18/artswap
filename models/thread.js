@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM,
             values: ['Collab', 'Hiring']
         }
+        
     });
     Thread.associate = (models) => {
         //associate thread to user currently logged in 
