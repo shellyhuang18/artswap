@@ -44,9 +44,15 @@ module.exports = {
       description: req.body.description,
       difficulty: req.body.difficulty,
       purpose: req.body.purpose
-    }).then((thread) => {
-      res.redirect(`/thread/${thread.slug}`);
-    }).catch(() => {
+    }).then((thread, err) => {
+      models.Contributors.create({
+        ThreadId: thread.id,
+        UserId: thread.UserId
+        //username will go here
+      }),
+      res.redirect(`/thread/${thread.id}`);
+    }).catch((err) => {
+      console.log(err);
       res.render('threads/index')
     });
   },
