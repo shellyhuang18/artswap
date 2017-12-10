@@ -43,12 +43,14 @@ module.exports = {
       title: req.body.title,
       description: req.body.description,
       difficulty: req.body.difficulty,
-      purpose: req.body.purpose
+      purpose: req.body.purpose,
+      creator: req.user.userName
     }).then((thread, err) => {
       models.Contributors.create({
         ThreadId: thread.id,
-        UserId: thread.UserId
-        //username will go here
+        UserId: thread.UserId,
+        userName: thread.creator,
+        threadTitle: thread.title
       }),
       res.redirect(`/thread/${thread.id}`);
     }).catch((err) => {

@@ -15,6 +15,23 @@
         <p>
           This pane will display all the threads
           the user has created, or been highlighted for.
+          <br>
+          {{#each userContacts}}
+          {{this.[0]}}
+          <br>
+          {{#each this}}
+            {{#if this.twitter}}
+              {{this.twitter}}
+            {{/if}}
+          {{/each}}
+          <br>
+
+
+
+
+
+          {{/each}}
+
         </p>
       </div>
   </div>
