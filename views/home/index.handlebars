@@ -17,18 +17,27 @@
           the user has created, or been highlighted for.
           <br>
           {{#each userContacts}}
-          {{this.[0]}}
-          <br>
-          {{#each this}}
-            {{#if this.twitter}}
-              {{this.twitter}}
-            {{/if}}
-          {{/each}}
-          <br>
-
-
-
-
+            <h3>{{this.[0]}}</h3>
+            {{#each this}}
+              <h5>{{this.userName}}</h5>
+              <h6>{{this.email}}</h6>
+              {{#if this.website}}
+                <a href="https://{{this.website}}">Personal Website</a>
+              {{/if}}
+              {{#if this.facebook}}
+                <a href="https://facebook.com/{{this.facebook}}">Facebook</a>
+              {{/if}}
+              {{#if this.twitter}}
+                <a href="https://twitter.com/{{this.twitter}}">Twitter</a>
+              {{/if}}
+              {{#if this.deviantart}}
+                <a href="https://deviantart.com/{{this.deviantart}}">DeviantArt</a>
+              {{/if}}
+              {{#if this.github}}
+                <a href="https://github.com/{{this.github}}">Twitter</a>
+              {{/if}}
+            {{/each}}
+            <br>
 
           {{/each}}
 

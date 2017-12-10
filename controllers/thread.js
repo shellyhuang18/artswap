@@ -28,7 +28,8 @@ module.exports = {
           threads: threads,
           //all enum values
           difficulties: models.Thread.rawAttributes.difficulty.values,
-          purposes: models.Thread.rawAttributes.purpose.values
+          purposes: models.Thread.rawAttributes.purpose.values,
+          layout: 'main'
         });
       });
   },

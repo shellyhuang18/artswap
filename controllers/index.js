@@ -42,6 +42,7 @@ router.get('/', (req, res) => {
           //console.log('LOOK OVER HERE', projects[list])
           socialPromises.push(projects[list][0].threadTitle) //Add threadtitle too
           for(user in projects[list]){
+            if(projects[list][user].userName != req.user.userName){
             socialPromises.push(
               models.Social.findOne({where: {userName: projects[list][user].userName}})
               .then(userSocial => {
@@ -49,6 +50,7 @@ router.get('/', (req, res) => {
               })
             )
           }
+        }
           promisesB.push(Promise.all(socialPromises).then(ans => {return ans}))
       }
       return Promise.all(promisesB)
