@@ -41,7 +41,8 @@ module.exports = {
       UserId: req.user.id,
       ThreadId: req.params.id,
       body: req.body.info,
-      image: '/uploads/'+file_image
+      image: '/uploads/'+file_image,
+      creator: req.user.userName
     }).then((post) => {
       res.redirect(`/thread/${post.ThreadId}`);
     }).catch((err) => {
