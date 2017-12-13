@@ -21,7 +21,7 @@
 
 	<br>
 	<div class="pull-right">
-		<h5>{{thread.createdAt}}<h5>
+		<h5>Posted by <b>{{thread.creator}}</b> on {{thread.createdAt}} <h5>
 			
 
 </div>
@@ -41,13 +41,26 @@
 
 	{{#each posts}}
 		
-		<div class="panel panel-default"> <div class="panel-body"> 
-			
+		<div class="panel panel-default">
+			<div class="pull-right">
+
+
+            {{#if ../isCreator }}
+			<button type="highlight" class="btn btn-default" name="{{this.id}}" style="padding: 2px; font-size: 10px; margin: 4px">Collaborate
+			</button>
+			{{/if}}
+
+
+
+
+
+			</div>
+		 <div class="panel-body" style="word-break: break-all; word-wrap: break-word;"> 
 		{{ this.body }} 
 		<br>
+
 			<div class="pull-right">
-			<h5>{{this.createdAt}}</h5>
-			<small class="text-muted">{{this.creator}}</small>
+			<h5>Posted by <b>{{this.creator}}</b> on {{this.createdAt}} </h5>
 			</div>
 		</div></div>
 		

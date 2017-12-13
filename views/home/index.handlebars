@@ -17,10 +17,12 @@
           the user has created, or been highlighted for.
           <br>
           {{#each userContacts}}
-            <h3>{{this.[0]}}</h3>
+            <h3>~<u>{{this.[0]}}</u>~</h3>
+
             {{#each this}}
-              <h5>{{this.userName}}</h5>
-              <h6>{{this.email}}</h6>
+              {{#if this.userName}}
+              <h5>{{this.userName}} | {{this.email}} </h5>
+              {{/if}}
               {{#if this.website}}
                 <a href="https://{{this.website}}">Personal Website</a>
               {{/if}}
@@ -38,7 +40,8 @@
               {{/if}}
             {{/each}}
             <br>
-
+          {{else}}
+            <h3>You currently aren't part of any projects</h3>
           {{/each}}
 
         </p>

@@ -10,6 +10,7 @@ module.exports = {
     router.get('/:id', this.display);
     router.post('/', this.create);
     router.post('/:id', this.newResponse);
+    //router.post('/:id/#', this.____);
     
     //router.get('/edit/:slug', this.editThread);
     router.get('/edit/:id', this.edit);
@@ -73,7 +74,8 @@ module.exports = {
           ThreadId: req.params.id
         }
       }).then((posts) => {
-        res.render('threads/single', { thread, posts})
+        const isCreator = (req.user.userName == thread.creator)
+        res.render('threads/single', {isCreator, thread, posts})
       })
     }).catch(() => {
       res.redirect('/thread')
@@ -86,7 +88,8 @@ module.exports = {
       models.Post.create({
         UserId: req.user.id,
         ThreadId: req.params.id,
-        body: req.body.info
+        body: req.body.info,
+        creator: req.user.userName
       }).then((post) => {
         res.redirect(`/thread/${post.ThreadId}`)
       }).catch(() => {
