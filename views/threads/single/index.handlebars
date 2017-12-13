@@ -46,8 +46,19 @@
 
 
             {{#if ../isCreator }}
-			<button type="highlight" class="btn btn-default" name="{{this.id}}" style="padding: 2px; font-size: 10px; margin: 4px">Collaborate
-			</button>
+				{{#unless highlighted}}
+				<form action = "/thread/{{../thread.id}}/add/{{this.id}}" method = "post">
+				<button name="colabButton" type="highlight" class="btn btn-default" postID="{{this.id}}" style="padding: 2px; font-size: 10px; margin: 4px">
+				Collaborate
+				</button>
+				</form>
+				{{else}}
+
+				<button type="button" disabled class="btn btn-default"  style="padding: 2px; font-size: 10px; margin: 4px">
+				Hired!
+				</button>
+
+				{{/unless}}
 			{{/if}}
 
 

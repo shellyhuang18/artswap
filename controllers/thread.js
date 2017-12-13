@@ -10,8 +10,9 @@ module.exports = {
     router.get('/:id', this.display);
     router.post('/', this.create);
     router.post('/:id', this.newResponse);
-    //router.post('/:id/#', this.____);
-    
+    router.post('/:id/add/:postid', this.addContributor);
+    router.get('/:id/add/:postid', this.display);
+
     //router.get('/edit/:slug', this.editThread);
     router.get('/edit/:id', this.edit);
     router.delete('/delete', this.remove);
@@ -98,6 +99,62 @@ module.exports = {
         })
       })
   },
+
+
+  addContributor(req,res){ //updates database
+    //find thread model DONE
+    //check if user is thread creator DONE
+    //find post model DONE
+    //update as highlighted DONE
+    // use post model to find user DONE
+    //Create the contributor
+    //redirect back to thread
+    let threadid = req.params.id
+    let postid = req.params.postid
+    models.Thread.findOne({where:{id: threadid}
+    }).then(threadObj => {
+      if(threadObj.creator != req.user.userName){ ///not the creator
+        res.redirect(`/thread/${threadid}`)
+      }
+      else{
+        models.Post.findOne({where:{id: postid}
+      }).then(postObj => {
+
+           postObj.updateAttributes({highlighted: true})
+           models.User.findOne({where: {userName: postObj.creator}
+         }).then(userObj => {
+          if(userObj.userName == threadObj.creator){//post was by the creator of the thread
+             res.redirect(`/thread/${threadid}`)          
+          }
+          else{
+            models.Contributors.count({where:{
+              ThreadId: threadid,
+              UserId: userObj.id
+            }}).then(count => {
+            if(count != 0){
+              res.redirect(`/thread/${threadid}`)
+            }
+            else{
+             models.Contributors.create({
+              ThreadId: threadid,
+              UserId: userObj.id,
+              userName: userObj.userName,
+              threadTitle: threadObj.title
+             })
+             res.redirect(`/thread/${threadid}`)            
+            }
+        })
+         }
+       })
+
+
+        })
+      }
+    })
+
+  },
+
+
 
 
   // Allows user to edit thread, iff thread belongs to user
