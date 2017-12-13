@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.ENUM,
             values: ['Collab', 'Hiring']
+        },
+        creator:{
+            allowNull: false,
+            type: DataTypes.STRING
         }
         
     });

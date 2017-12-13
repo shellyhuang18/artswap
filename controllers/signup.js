@@ -20,11 +20,11 @@ module.exports = {
       lastName: req.body.lastName,
       userName: req.body.username.toLowerCase(),
       email: req.body.email.toLowerCase(),
-      password: req.body.password,
+      password: req.body.password
       }),
       models.Social.create({ //Creates their record in social model
         userName: req.body.username.toLowerCase(),
-        email: req.body.email.toLowerCase(),
+        email: req.body.email.toLowerCase()
       }
       ).then((user) => {
       req.login(user, () =>

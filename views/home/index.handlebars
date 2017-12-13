@@ -15,6 +15,35 @@
         <p>
           This pane will display all the threads
           the user has created, or been highlighted for.
+          <br>
+          {{#each userContacts}}
+            <h3>~<u>{{this.[0]}}</u>~</h3>
+
+            {{#each this}}
+              {{#if this.userName}}
+              <h5>{{this.userName}} | {{this.email}} </h5>
+              {{/if}}
+              {{#if this.website}}
+                <a href="https://{{this.website}}">Personal Website</a>
+              {{/if}}
+              {{#if this.facebook}}
+                <a href="https://facebook.com/{{this.facebook}}">Facebook</a>
+              {{/if}}
+              {{#if this.twitter}}
+                <a href="https://twitter.com/{{this.twitter}}">Twitter</a>
+              {{/if}}
+              {{#if this.deviantart}}
+                <a href="https://deviantart.com/{{this.deviantart}}">DeviantArt</a>
+              {{/if}}
+              {{#if this.github}}
+                <a href="https://github.com/{{this.github}}">Github</a>
+              {{/if}}
+            {{/each}}
+            <br>
+          {{else}}
+            <h3>You currently aren't part of any projects</h3>
+          {{/each}}
+
         </p>
       </div>
   </div>

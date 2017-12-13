@@ -6,6 +6,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: true,
       }
+    },
+    creator: {
+      type: DataTypes.STRING
+    },
+    highlighted:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 

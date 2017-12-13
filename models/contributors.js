@@ -4,12 +4,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.INTEGER
         },
+        threadTitle:{
+            allowNull: false,
+            type: DataTypes.STRING
+        },
         UserId: {
             allowNull: false,
             type: DataTypes.INTEGER
         },
         userName: {
-            allowNull: true,
+            allowNull: false,
             type: DataTypes.STRING
         }
     });
