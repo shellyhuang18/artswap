@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
                 isAlphanumeric: true,
                 notEmpty: true,
             },
+            unique: true,
         },
         firstName: {
             allowNull: false,
@@ -40,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
             validate:{
                 notEmpty: true,
             },
+            unique: true,
         },
     });
 
@@ -47,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       So we can list all the posts a user has made
     */
     User.associate = (models) => {
-        models.User.hasMany(models.Post);
+        models.User.hasMany(models.Thread);
     }
     
 

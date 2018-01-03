@@ -21,11 +21,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.ENUM,
             values: ['Collab', 'Hiring']
+        },
+        creator:{
+            allowNull: false,
+            type: DataTypes.STRING
         }
+        
     });
     Thread.associate = (models) => {
         //associate thread to user currently logged in 
         models.Thread.belongsTo(models.User);
+        models.Thread.hasMany(models.Post);
+
     }
     return Thread;
 };

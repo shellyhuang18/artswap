@@ -1,35 +1,50 @@
-<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="site-heading">
-          <h1>Blog</h1>
-          <hr class="small">
-          <span class="subheading">CTP</span>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 ">
+      <div class="page-heading">
+        <a href='/'> <img src='/img/logo-large-black.png' class="img-responsive center-block" style="padding-top:80px"> </a>
       </div>
     </div>
   </div>
-</header>
+</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <div class="post-preview">
-        <a href='/thread'>Post a thread</a>
+<div class="container" >
+  <div id="form-background" class="col-xs-8 col-xs-offset-2">
+      <div class="text-center">
+        <h1>My Projects</h1>
+        <p>
+          This pane will display all the threads
+          the user has created, or been highlighted for.
+          <br>
+          {{#each userContacts}}
+            <h3>~<u>{{this.[0]}}</u>~</h3>
 
-        <a href="post.html">
-          <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-          <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-        </a>
-          <p class="post-meta">Posted by <a href="#">CTP</a> on August 17, 2016</p>
+            {{#each this}}
+              {{#if this.userName}}
+              <h5>{{this.userName}} | {{this.email}} </h5>
+              {{/if}}
+              {{#if this.website}}
+                <a href="https://{{this.website}}">Personal Website</a>
+              {{/if}}
+              {{#if this.facebook}}
+                <a href="https://facebook.com/{{this.facebook}}">Facebook</a>
+              {{/if}}
+              {{#if this.twitter}}
+                <a href="https://twitter.com/{{this.twitter}}">Twitter</a>
+              {{/if}}
+              {{#if this.deviantart}}
+                <a href="https://deviantart.com/{{this.deviantart}}">DeviantArt</a>
+              {{/if}}
+              {{#if this.github}}
+                <a href="https://github.com/{{this.github}}">Github</a>
+              {{/if}}
+            {{/each}}
+            <br>
+          {{else}}
+            <h3>You currently aren't part of any projects</h3>
+          {{/each}}
+
+        </p>
       </div>
-        <hr>
-        <ul class="pager">
-            <li class="next">
-                <a href="#">Older Posts &rarr;</a>
-            </li>
-        </ul>
-    </div>
   </div>
 </div>
